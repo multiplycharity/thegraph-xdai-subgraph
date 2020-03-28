@@ -1,0 +1,16 @@
+{
+  "name": "xdaiSarafuToken",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ seichris/xdaiSarafuToken",
+    "create-local": "graph create --node http://localhost:8020/ seichris/xdaiSarafuToken",
+    "remove-local": "graph remove --node http://localhost:8020/ seichris/xdaiSarafuToken",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 seichris/xdaiSarafuToken"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.17.1",
+    "@graphprotocol/graph-ts": "0.17.0"
+  }
+}

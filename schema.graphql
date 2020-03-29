@@ -1,4 +1,18 @@
 #
+# Token events
+#
+type TokenTransfer @entity {
+  id: ID!
+  token: Bytes!
+  sender: Bytes!
+  receiver: Bytes!
+  amount: BigInt!
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+#
 # Current token balance of a particular Ethereum account
 #
 type Account @entity {
@@ -23,18 +37,4 @@ type AccountSnapshot @entity {
   balance: BigInt!
   block: BigInt!
   timestamp: BigInt!
-}
-
-#
-# Token events
-#
-type TokenTransfer @entity {
-  id: ID!
-  token: Bytes!
-  sender: Bytes!
-  receiver: Bytes!
-  amount: BigInt!
-  block: BigInt!
-  timestamp: BigInt!
-  transaction: Bytes!
 }

@@ -12,6 +12,100 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class TokenTransfer extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TokenTransfer entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TokenTransfer entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TokenTransfer", id.toString(), this);
+  }
+
+  static load(id: string): TokenTransfer | null {
+    return store.get("TokenTransfer", id) as TokenTransfer | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get token(): Bytes {
+    let value = this.get("token");
+    return value.toBytes();
+  }
+
+  set token(value: Bytes) {
+    this.set("token", Value.fromBytes(value));
+  }
+
+  get sender(): Bytes {
+    let value = this.get("sender");
+    return value.toBytes();
+  }
+
+  set sender(value: Bytes) {
+    this.set("sender", Value.fromBytes(value));
+  }
+
+  get receiver(): Bytes {
+    let value = this.get("receiver");
+    return value.toBytes();
+  }
+
+  set receiver(value: Bytes) {
+    this.set("receiver", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get block(): BigInt {
+    let value = this.get("block");
+    return value.toBigInt();
+  }
+
+  set block(value: BigInt) {
+    this.set("block", Value.fromBigInt(value));
+  }
+
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
+    return value.toBigInt();
+  }
+
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
+  }
+
+  get transaction(): Bytes {
+    let value = this.get("transaction");
+    return value.toBytes();
+  }
+
+  set transaction(value: Bytes) {
+    this.set("transaction", Value.fromBytes(value));
+  }
+}
+
 export class Account extends Entity {
   constructor(id: string) {
     super();
@@ -161,99 +255,5 @@ export class AccountSnapshot extends Entity {
 
   set timestamp(value: BigInt) {
     this.set("timestamp", Value.fromBigInt(value));
-  }
-}
-
-export class TokenTransfer extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save TokenTransfer entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save TokenTransfer entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("TokenTransfer", id.toString(), this);
-  }
-
-  static load(id: string): TokenTransfer | null {
-    return store.get("TokenTransfer", id) as TokenTransfer | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get token(): Bytes {
-    let value = this.get("token");
-    return value.toBytes();
-  }
-
-  set token(value: Bytes) {
-    this.set("token", Value.fromBytes(value));
-  }
-
-  get sender(): Bytes {
-    let value = this.get("sender");
-    return value.toBytes();
-  }
-
-  set sender(value: Bytes) {
-    this.set("sender", Value.fromBytes(value));
-  }
-
-  get receiver(): Bytes {
-    let value = this.get("receiver");
-    return value.toBytes();
-  }
-
-  set receiver(value: Bytes) {
-    this.set("receiver", Value.fromBytes(value));
-  }
-
-  get amount(): BigInt {
-    let value = this.get("amount");
-    return value.toBigInt();
-  }
-
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
-  }
-
-  get block(): BigInt {
-    let value = this.get("block");
-    return value.toBigInt();
-  }
-
-  set block(value: BigInt) {
-    this.set("block", Value.fromBigInt(value));
-  }
-
-  get timestamp(): BigInt {
-    let value = this.get("timestamp");
-    return value.toBigInt();
-  }
-
-  set timestamp(value: BigInt) {
-    this.set("timestamp", Value.fromBigInt(value));
-  }
-
-  get transaction(): Bytes {
-    let value = this.get("transaction");
-    return value.toBytes();
-  }
-
-  set transaction(value: Bytes) {
-    this.set("transaction", Value.fromBytes(value));
   }
 }

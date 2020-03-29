@@ -4,3 +4,14 @@ type ExampleEntity @entity {
   owner: Bytes! # address
   spender: Bytes! # address
 }
+
+type Transfer @entity {
+  id: ID!
+  amount: BigDecimal!
+  sender: Bytes!
+  source: Bytes!
+  destination: Bytes!
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}

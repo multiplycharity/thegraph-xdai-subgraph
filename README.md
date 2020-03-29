@@ -1,3 +1,5 @@
+Query the subgraph from https://thegraph.com/explorer/subgraph/abundance-stack/xdai-sarafu-token?version=current.
+
 Documentation is at https://thegraph.com/docs/define-a-subgraph.
 
 I took the ERC20 ABI from https://github.com/graphprotocol/erc20-subgraph/blob/master/abis/ERC20.json and the ERC20 graph schema from https://github.com/graphprotocol/uniswap-subgraph/blob/master/schema.graphql.

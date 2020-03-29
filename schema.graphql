@@ -1,16 +1,39 @@
-type ExampleEntity @entity {
+#
+# Current token balance of a particular Ethereum account
+#
+type Account @entity {
+  " Equals to: <accountAddress>-<tokenAddress>"
   id: ID!
-  count: BigInt!
-  owner: Bytes! # address
-  spender: Bytes! # address
+  account: Bytes!
+  token: Bytes!
+  balance: BigInt!
+  block: BigInt!
+  timestamp: BigInt!
 }
 
-type Transfer @entity {
+#
+# Token balance of a particular Ethereum account in a certain timestamp. This entity is used to
+# provide information about evolution of account balances
+#
+type AccountSnapshot @entity {
+  " Equals to: <accountAddress>-<tokenAddress>-<timestamp>"
   id: ID!
-  amount: BigDecimal!
+  account: Bytes!
+  token: Bytes!
+  balance: BigInt!
+  block: BigInt!
+  timestamp: BigInt!
+}
+
+#
+# Token events
+#
+type TokenTransfer @entity {
+  id: ID!
+  token: Bytes!
   sender: Bytes!
-  source: Bytes!
-  destination: Bytes!
+  receiver: Bytes!
+  amount: BigInt!
   block: BigInt!
   timestamp: BigInt!
   transaction: Bytes!

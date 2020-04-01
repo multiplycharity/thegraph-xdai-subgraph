@@ -20,24 +20,109 @@ I initialized the subgraph in three steps:
 2. `yarn deploy`
 3. check `https://thegraph.com/explorer/subgraph/abundance-stack/xdai-sarafu-token`
 
-## Which data do we want to see?
+## Querying the xDAI Sarafu contract
 
-### Transfers
+### Last 5 (or any other number of) transfers
 
-1. How many transactions were sent (in timeframe)?
-2. How much volume was transferred (in timeframe)?
+Show me the last 5 transactions
+```
+tokenTransfers (first: 5, orderBy: timestamp, orderDirection: desc) {
+    id
+    token
+    amount
+    block
+    timestamp
+  }
+```
 
-**Queries**
+### Transfers in the last 30 days
 
-1. `tokenTransfers`
-2. `...`
+How many transactions were sent (in timeframe)?
+How much volume was transferred (in timeframe)?
 
-### Accounts
+```
+tokenTransfers(first: 5, orderBy: timestamp, orderDirection: desc, where: {timestamp: "2592000"}) {
+    id
+    token
+    amount
+    block
+    timestamp
+  }
+```
 
-1. Which accounts transferred most (in timeframe)?
-2. Current token balance of all Sarafu
+### Looking at 5 (or any other number of) accounts
 
-**Queries**
+Which accounts hold most // Top 5 token whales
+```
+accounts(first: 5, orderBy: balance, orderDirection: desc) {
+    id
+    account
+    token
+    balance
+  }
+```
 
-1. ``
-2. `accounts(first: 5, orderBy: balance, orderDirection: desc)`
+Which accounts transferred most volume (in timeframe)?
+Which accounts has most number of trades (in timeframe)?
+Total balance of Sarafu in existence
+
+### Looking at all transfers
+
+Total amount of transfers
+Total volume traded
+
+### Looking at one account
+
+**Current state of certain account**
+
+Current balance of certain account
+
+```
+accounts(first: 5, orderBy: timestamp, orderDirection: desc, where: {account: "0xbdb3bc887c3b70586bc25d04d89ec802b897fc5f"}) {
+    balance
+  }
+```
+
+Total trade volume of certain account
+```
+......
+```
+
+Total number of trades of certain account
+```
+......
+```
+
+**Last 5 ...**
+
+Last 5 transfers from certain account
+```
+tokenTransfers(first: 5, orderBy: timestamp, orderDirection: desc, where: {sender: "0x00036d3df07ba5d3ec5ed4aa87d15acae5fb00f0"}) {
+    id
+    sender
+    token
+    amount
+    timestamp
+  }
+```
+
+Last 5 transfers received by certain account
+```
+tokenTransfers(first: 5, orderBy: timestamp, orderDirection: desc, where: {receiver: "0x00036d3df07ba5d3ec5ed4aa87d15acae5fb00f0"}) {
+    id
+    receiver
+    token
+    amount
+    timestamp
+  }
+```
+
+Total trade volume of certain account
+```
+......
+```
+
+Total number of trades of certain account
+```
+......
+```
